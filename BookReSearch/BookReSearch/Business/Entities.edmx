@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BookReSearchModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="BookReSearchModelStoreContainer">
+          <EntitySet Name="Book" EntityType="BookReSearchModel.Store.Book" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="BookTitle" EntityType="BookReSearchModel.Store.BookTitle" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Category" EntityType="BookReSearchModel.Store.Category" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SubCategory" EntityType="BookReSearchModel.Store.SubCategory" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_Book_ToTable" Association="BookReSearchModel.Store.FK_Book_ToTable">
+            <End Role="BookTitle" EntitySet="BookTitle" />
+            <End Role="Book" EntitySet="Book" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BookTitle_ToTable" Association="BookReSearchModel.Store.FK_BookTitle_ToTable">
+            <End Role="SubCategory" EntitySet="SubCategory" />
+            <End Role="BookTitle" EntitySet="BookTitle" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubCategory_ToTable" Association="BookReSearchModel.Store.FK_SubCategory_ToTable">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="SubCategory" EntitySet="SubCategory" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="BookID" />
+          </Key>
+          <Property Name="BookID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="BookTitleID" Type="int" Nullable="false" />
+          <Property Name="CheckOutPatronID" Type="varchar" MaxLength="50" />
+          <Property Name="IsCheckedOut" Type="bit" Nullable="false" />
+          <Property Name="PickUpDate" Type="date" />
+          <Property Name="ReturnDate" Type="date" />
+        </EntityType>
+        <EntityType Name="BookTitle">
+          <Key>
+            <PropertyRef Name="BookTitleID" />
+          </Key>
+          <Property Name="BookTitleID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Author" Type="nvarchar" Nullable="false" MaxLength="225" />
+          <Property Name="SubCategoryID" Type="int" Nullable="false" />
+          <Property Name="ShelfLocation" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SubCategory">
+          <Key>
+            <PropertyRef Name="SubCategoryID" />
+          </Key>
+          <Property Name="SubCategoryID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SubCategoryName" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="SubCategorySynonyms" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_Book_ToTable">
+          <End Role="BookTitle" Type="BookReSearchModel.Store.BookTitle" Multiplicity="1" />
+          <End Role="Book" Type="BookReSearchModel.Store.Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BookTitle">
+              <PropertyRef Name="BookTitleID" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="BookTitleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BookTitle_ToTable">
+          <End Role="SubCategory" Type="BookReSearchModel.Store.SubCategory" Multiplicity="1" />
+          <End Role="BookTitle" Type="BookReSearchModel.Store.BookTitle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubCategory">
+              <PropertyRef Name="SubCategoryID" />
+            </Principal>
+            <Dependent Role="BookTitle">
+              <PropertyRef Name="SubCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubCategory_ToTable">
+          <End Role="Category" Type="BookReSearchModel.Store.Category" Multiplicity="1" />
+          <End Role="SubCategory" Type="BookReSearchModel.Store.SubCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="SubCategory">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="sp_SearchBooks" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SearchStr" Type="varchar" Mode="In" />
+        </Function>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BookReSearchModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="BookReSearchEntities" p1:LazyLoadingEnabled="true">
+          <FunctionImport Name="sp_SearchBooks" ReturnType="Collection(BookReSearchModel.sp_SearchBooks_Result)">
+          <Parameter Name="SearchStr" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="Books" EntityType="BookReSearchModel.Book" />
+          <EntitySet Name="BookTitles" EntityType="BookReSearchModel.BookTitle" />
+          <EntitySet Name="Categories" EntityType="BookReSearchModel.Category" />
+          <EntitySet Name="SubCategories" EntityType="BookReSearchModel.SubCategory" />
+          <AssociationSet Name="FK_Book_ToTable" Association="BookReSearchModel.FK_Book_ToTable">
+            <End Role="BookTitle" EntitySet="BookTitles" />
+            <End Role="Book" EntitySet="Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BookTitle_ToTable" Association="BookReSearchModel.FK_BookTitle_ToTable">
+            <End Role="SubCategory" EntitySet="SubCategories" />
+            <End Role="BookTitle" EntitySet="BookTitles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubCategory_ToTable" Association="BookReSearchModel.FK_SubCategory_ToTable">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="SubCategory" EntitySet="SubCategories" />
+          </AssociationSet>
+        </EntityContainer>
+        <ComplexType Name="sp_SearchBooks_Result">
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Author" Nullable="false" MaxLength="225" />
+          <Property Type="String" Name="Category" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="SubCategory" Nullable="false" MaxLength="255" />
+        </ComplexType>
+        <EntityType Name="Book">
+          <Key>
+            <PropertyRef Name="BookID" />
+          </Key>
+          <Property Type="Int32" Name="BookID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="BookTitleID" Nullable="false" />
+          <Property Type="String" Name="CheckOutPatronID" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="IsCheckedOut" Nullable="false" />
+          <Property Type="DateTime" Name="PickUpDate" Precision="0" />
+          <Property Type="DateTime" Name="ReturnDate" Precision="0" />
+          <NavigationProperty Name="BookTitle" Relationship="BookReSearchModel.FK_Book_ToTable" FromRole="Book" ToRole="BookTitle" />
+        </EntityType>
+        <EntityType Name="BookTitle">
+          <Key>
+            <PropertyRef Name="BookTitleID" />
+          </Key>
+          <Property Type="Int32" Name="BookTitleID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Author" Nullable="false" MaxLength="225" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="SubCategoryID" Nullable="false" />
+          <Property Type="String" Name="ShelfLocation" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Books" Relationship="BookReSearchModel.FK_Book_ToTable" FromRole="BookTitle" ToRole="Book" />
+          <NavigationProperty Name="SubCategory" Relationship="BookReSearchModel.FK_BookTitle_ToTable" FromRole="BookTitle" ToRole="SubCategory" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Type="Int32" Name="CategoryID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="CategoryName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="SubCategories" Relationship="BookReSearchModel.FK_SubCategory_ToTable" FromRole="Category" ToRole="SubCategory" />
+        </EntityType>
+        <EntityType Name="SubCategory">
+          <Key>
+            <PropertyRef Name="SubCategoryID" />
+          </Key>
+          <Property Type="Int32" Name="SubCategoryID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="SubCategoryName" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="CategoryID" Nullable="false" />
+          <Property Type="String" Name="SubCategorySynonyms" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BookTitles" Relationship="BookReSearchModel.FK_BookTitle_ToTable" FromRole="SubCategory" ToRole="BookTitle" />
+          <NavigationProperty Name="Category" Relationship="BookReSearchModel.FK_SubCategory_ToTable" FromRole="SubCategory" ToRole="Category" />
+        </EntityType>
+        <Association Name="FK_Book_ToTable">
+          <End Type="BookReSearchModel.BookTitle" Role="BookTitle" Multiplicity="1" />
+          <End Type="BookReSearchModel.Book" Role="Book" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BookTitle">
+              <PropertyRef Name="BookTitleID" />
+            </Principal>
+            <Dependent Role="Book">
+              <PropertyRef Name="BookTitleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BookTitle_ToTable">
+          <End Type="BookReSearchModel.SubCategory" Role="SubCategory" Multiplicity="1" />
+          <End Type="BookReSearchModel.BookTitle" Role="BookTitle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SubCategory">
+              <PropertyRef Name="SubCategoryID" />
+            </Principal>
+            <Dependent Role="BookTitle">
+              <PropertyRef Name="SubCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubCategory_ToTable">
+          <End Type="BookReSearchModel.Category" Role="Category" Multiplicity="1" />
+          <End Type="BookReSearchModel.SubCategory" Role="SubCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="SubCategory">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BookReSearchModelStoreContainer" CdmEntityContainer="BookReSearchEntities">
+          <FunctionImportMapping FunctionImportName="sp_SearchBooks" FunctionName="BookReSearchModel.Store.sp_SearchBooks">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="BookReSearchModel.sp_SearchBooks_Result">
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="SubCategory" ColumnName="SubCategory" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Books">
+            <EntityTypeMapping TypeName="BookReSearchModel.Book">
+              <MappingFragment StoreEntitySet="Book">
+                <ScalarProperty Name="ReturnDate" ColumnName="ReturnDate" />
+                <ScalarProperty Name="PickUpDate" ColumnName="PickUpDate" />
+                <ScalarProperty Name="IsCheckedOut" ColumnName="IsCheckedOut" />
+                <ScalarProperty Name="CheckOutPatronID" ColumnName="CheckOutPatronID" />
+                <ScalarProperty Name="BookTitleID" ColumnName="BookTitleID" />
+                <ScalarProperty Name="BookID" ColumnName="BookID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BookTitles">
+            <EntityTypeMapping TypeName="BookReSearchModel.BookTitle">
+              <MappingFragment StoreEntitySet="BookTitle">
+                <ScalarProperty Name="ShelfLocation" ColumnName="ShelfLocation" />
+                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="BookTitleID" ColumnName="BookTitleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="BookReSearchModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubCategories">
+            <EntityTypeMapping TypeName="BookReSearchModel.SubCategory">
+              <MappingFragment StoreEntitySet="SubCategory">
+                <ScalarProperty Name="SubCategorySynonyms" ColumnName="SubCategorySynonyms" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="SubCategoryName" ColumnName="SubCategoryName" />
+                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

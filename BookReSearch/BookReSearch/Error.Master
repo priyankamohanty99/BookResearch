@@ -1,0 +1,54 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Error.master.cs" Inherits="BookReSearch.Error" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>Book ReSearch</title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="Content/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="Content/css/normalize.css" rel="stylesheet" />
+    <link href="Content/css/skeleton-reduced.css" rel="stylesheet" />
+    <link href="http://fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css" />
+    <script src="Scripts/jquery-3.1.0.min.js"></script>
+    <script src="Scripts/jquery-ui-1.11.4.min.js"></script>
+</head>
+<body>
+    <form id="form1" runat="server">
+
+    <asp:ScriptManager ID="ScriptManager1" runat="server">
+        <Scripts>
+            <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" />
+        </Scripts>
+    </asp:ScriptManager>
+
+    <div class="banner" style="background-color:#315870">
+        <div class="container">
+            <div class="login-controls">
+                <i class="fa fa-lock" aria-hidden="true"></i>&nbsp;
+                <asp:LoginName ID="LoginName1" runat="server" FormatString="Logged in as <b>{0}</b>." />
+                <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" />
+                <asp:LoginView ID="LoginView1" runat="server">
+                    <AnonymousTemplate>
+                        or <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/CreateAccount.aspx">Create Account</asp:HyperLink>
+                    </AnonymousTemplate>
+                </asp:LoginView>
+            </div>
+            <h1 class="masthead"><i class="fa fa-book" style="color:lightblue" aria-hidden="true"></i>&nbsp;&nbsp;<b>Book Re<span style="color:lightblue">Search</span></b></h1>
+            <div class="navigation">
+                <asp:Menu ID="Menu1" runat="server" DataSourceID="SiteMapDataSource1" Orientation="Horizontal" StaticDisplayLevels="2">
+                </asp:Menu>
+                <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" ShowStartingNode="true" />
+            </div>
+        </div>
+    </div>
+
+    <div class="container">        
+        <asp:ContentPlaceHolder id="MainContent" runat="server">        
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+</body>
+</html>

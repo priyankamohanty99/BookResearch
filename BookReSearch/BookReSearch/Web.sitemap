@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+    <siteMapNode url="~/Default.aspx" title="Home"  description="Home page" >
+      <siteMapNode url="~/BookSearch.aspx" title="Book Search"  description="Search for books" />
+      <siteMapNode url="~/BookBrowse.aspx" title="Book Browse"  description="Browse for books" />
+      <siteMapNode url="~/CheckedOutBooks.aspx" title="Checked Out Books"  description="View your checked out books" roles="Patron"/>
+      <siteMapNode url="~/AboutUs.aspx" title="About Us"  description="About the library" />
+      <siteMapNode url="~/UpcomingEvents.aspx" title="Upcoming Events"  description="Upcoming library events" />
+      <siteMapNode url="~/UserFeedback.aspx" title="User Feedback"  description="Send the library feedback" />
+        
+      <siteMapNode url="~/Admin/AdminHome.aspx" title="Admin Home"  description="Admin home page" roles="Admin">
+        <siteMapNode title="Inventory Admin" description="Inventory Admin" roles="Admin">
+          <siteMapNode url="~/Admin/Categories/List.aspx" title="Categories"  description="Category admin" roles="Admin" />
+          <siteMapNode url="~/Admin/SubCategories/List.aspx" title="SubCategories"  description="Category admin" roles="Admin" />
+          <siteMapNode url="~/Admin/Books/List.aspx" title="Books"  description="Category admin" roles="Admin" />
+          <siteMapNode url="~/Admin/BookTitles/List.aspx" title="Book Titles"  description="Category admin" roles="Admin" />
+        </siteMapNode>
+        <siteMapNode title="Patron Admin" description="Patron Admin" roles="Admin">
+          <siteMapNode url="~/Admin/Patrons.aspx" title="Manage Patrons"  description="Manage patrons" roles="Admin" />
+          <siteMapNode url="~/Admin/MobilePatronsList.aspx" title="Mobile Patrons List"  description="Mobile-friendly patron list" roles="Admin" />
+        </siteMapNode>
+      </siteMapNode>
+      <siteMapNode url="~/Sitemap.aspx" title="Sitemap"  description="Sitemap for the website" />
+    </siteMapNode>
+</siteMap>

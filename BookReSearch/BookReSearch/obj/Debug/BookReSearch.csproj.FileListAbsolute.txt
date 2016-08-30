@@ -1,0 +1,14 @@
+C:\Users\mjhen\Documents\Visual Studio 2012\CPSC6176\BookReSearch\BookReSearch\bin\BookReSearch.dll
+C:\Users\mjhen\Documents\Visual Studio 2012\CPSC6176\BookReSearch\BookReSearch\bin\BookReSearch.pdb
+C:\Users\mjhen\Documents\Visual Studio 2012\CPSC6176\BookReSearch\BookReSearch\bin\EntityFramework.dll
+C:\Users\mjhen\Documents\Visual Studio 2012\CPSC6176\BookReSearch\BookReSearch\bin\EntityFramework.SqlServer.dll
+C:\Users\mjhen\Documents\Visual Studio 2012\CPSC6176\BookReSearch\BookReSearch\bin\Microsoft.AspNet.DynamicData.EFProvider.dll
+C:\Users\mjhen\Documents\Visual Studio 2012\CPSC6176\BookReSearch\BookReSearch\bin\Microsoft.AspNet.EntityDataSource.dll
+C:\Users\mjhen\Documents\Visual Studio 2012\CPSC6176\BookReSearch\BookReSearch\bin\System.Web.Providers.dll
+C:\Users\mjhen\Documents\Visual Studio 2012\CPSC6176\BookReSearch\BookReSearch\bin\EntityFramework.xml
+C:\Users\mjhen\Documents\Visual Studio 2012\CPSC6176\BookReSearch\BookReSearch\bin\EntityFramework.SqlServer.xml
+C:\Users\mjhen\Documents\Visual Studio 2012\CPSC6176\BookReSearch\BookReSearch\bin\System.Web.Providers.xml
+C:\Users\mjhen\Documents\Visual Studio 2012\CPSC6176\BookReSearch\BookReSearch\obj\Debug\BookReSearch.dll
+C:\Users\mjhen\Documents\Visual Studio 2012\CPSC6176\BookReSearch\BookReSearch\obj\Debug\BookReSearch.pdb
+C:\Users\mjhen\Documents\Visual Studio 2012\CPSC6176\BookReSearch\BookReSearch\bin\AjaxControlToolkit.dll
+C:\Users\mjhen\Documents\Visual Studio 2012\CPSC6176\BookReSearch\BookReSearch\obj\Debug\BookReSearch.csprojResolveAssemblyReference.cache

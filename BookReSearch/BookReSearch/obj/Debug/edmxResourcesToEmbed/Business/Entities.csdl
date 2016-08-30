@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BookReSearchModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="BookReSearchEntities" p1:LazyLoadingEnabled="true">
+    <FunctionImport Name="sp_SearchBooks" ReturnType="Collection(BookReSearchModel.sp_SearchBooks_Result)">
+      <Parameter Name="SearchStr" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="Books" EntityType="BookReSearchModel.Book" />
+    <EntitySet Name="BookTitles" EntityType="BookReSearchModel.BookTitle" />
+    <EntitySet Name="Categories" EntityType="BookReSearchModel.Category" />
+    <EntitySet Name="SubCategories" EntityType="BookReSearchModel.SubCategory" />
+    <AssociationSet Name="FK_Book_ToTable" Association="BookReSearchModel.FK_Book_ToTable">
+      <End Role="BookTitle" EntitySet="BookTitles" />
+      <End Role="Book" EntitySet="Books" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BookTitle_ToTable" Association="BookReSearchModel.FK_BookTitle_ToTable">
+      <End Role="SubCategory" EntitySet="SubCategories" />
+      <End Role="BookTitle" EntitySet="BookTitles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubCategory_ToTable" Association="BookReSearchModel.FK_SubCategory_ToTable">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="SubCategory" EntitySet="SubCategories" />
+    </AssociationSet>
+  </EntityContainer>
+  <ComplexType Name="sp_SearchBooks_Result">
+    <Property Type="String" Name="Title" Nullable="false" MaxLength="255" />
+    <Property Type="String" Name="Author" Nullable="false" MaxLength="225" />
+    <Property Type="String" Name="Category" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="SubCategory" Nullable="false" MaxLength="255" />
+  </ComplexType>
+  <EntityType Name="Book">
+    <Key>
+      <PropertyRef Name="BookID" />
+    </Key>
+    <Property Type="Int32" Name="BookID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="Int32" Name="BookTitleID" Nullable="false" />
+    <Property Type="String" Name="CheckOutPatronID" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Boolean" Name="IsCheckedOut" Nullable="false" />
+    <Property Type="DateTime" Name="PickUpDate" Precision="0" />
+    <Property Type="DateTime" Name="ReturnDate" Precision="0" />
+    <NavigationProperty Name="BookTitle" Relationship="BookReSearchModel.FK_Book_ToTable" FromRole="Book" ToRole="BookTitle" />
+  </EntityType>
+  <EntityType Name="BookTitle">
+    <Key>
+      <PropertyRef Name="BookTitleID" />
+    </Key>
+    <Property Type="Int32" Name="BookTitleID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="Title" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Author" Nullable="false" MaxLength="225" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="SubCategoryID" Nullable="false" />
+    <Property Type="String" Name="ShelfLocation" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Books" Relationship="BookReSearchModel.FK_Book_ToTable" FromRole="BookTitle" ToRole="Book" />
+    <NavigationProperty Name="SubCategory" Relationship="BookReSearchModel.FK_BookTitle_ToTable" FromRole="BookTitle" ToRole="SubCategory" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryID" />
+    </Key>
+    <Property Type="Int32" Name="CategoryID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="CategoryName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="SubCategories" Relationship="BookReSearchModel.FK_SubCategory_ToTable" FromRole="Category" ToRole="SubCategory" />
+  </EntityType>
+  <EntityType Name="SubCategory">
+    <Key>
+      <PropertyRef Name="SubCategoryID" />
+    </Key>
+    <Property Type="Int32" Name="SubCategoryID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Type="String" Name="SubCategoryName" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Type="Int32" Name="CategoryID" Nullable="false" />
+    <Property Type="String" Name="SubCategorySynonyms" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="BookTitles" Relationship="BookReSearchModel.FK_BookTitle_ToTable" FromRole="SubCategory" ToRole="BookTitle" />
+    <NavigationProperty Name="Category" Relationship="BookReSearchModel.FK_SubCategory_ToTable" FromRole="SubCategory" ToRole="Category" />
+  </EntityType>
+  <Association Name="FK_Book_ToTable">
+    <End Type="BookReSearchModel.BookTitle" Role="BookTitle" Multiplicity="1" />
+    <End Type="BookReSearchModel.Book" Role="Book" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BookTitle">
+        <PropertyRef Name="BookTitleID" />
+      </Principal>
+      <Dependent Role="Book">
+        <PropertyRef Name="BookTitleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BookTitle_ToTable">
+    <End Type="BookReSearchModel.SubCategory" Role="SubCategory" Multiplicity="1" />
+    <End Type="BookReSearchModel.BookTitle" Role="BookTitle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SubCategory">
+        <PropertyRef Name="SubCategoryID" />
+      </Principal>
+      <Dependent Role="BookTitle">
+        <PropertyRef Name="SubCategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubCategory_ToTable">
+    <End Type="BookReSearchModel.Category" Role="Category" Multiplicity="1" />
+    <End Type="BookReSearchModel.SubCategory" Role="SubCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="SubCategory">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

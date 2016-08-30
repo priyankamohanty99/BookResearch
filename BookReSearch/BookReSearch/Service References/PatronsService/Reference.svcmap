@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="8aa91cf9-9a75-4156-ae3e-4c752477f28d" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:56814/Patrons.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="Patrons.xsd" MetadataType="Schema" ID="4aee4bce-e3d2-47f0-b291-b5030b8fba1f" SourceId="1" SourceUrl="http://localhost:56814/Patrons.svc?xsd=xsd0" />
+    <MetadataFile FileName="Patrons1.xsd" MetadataType="Schema" ID="78904fec-5c34-452c-8b9f-a92be8628621" SourceId="1" SourceUrl="http://localhost:56814/Patrons.svc?xsd=xsd2" />
+    <MetadataFile FileName="Patrons2.xsd" MetadataType="Schema" ID="76f13c71-521a-4934-8ea0-585073245e28" SourceId="1" SourceUrl="http://localhost:56814/Patrons.svc?xsd=xsd1" />
+    <MetadataFile FileName="Patrons.wsdl" MetadataType="Wsdl" ID="c3bd0101-4009-41d9-88c3-e270c2bfa2dd" SourceId="1" SourceUrl="http://localhost:56814/Patrons.svc?wsdl" />
+    <MetadataFile FileName="Patrons.disco" MetadataType="Disco" ID="e0e2c27f-07e6-48a9-82e0-b3cfb087a0d5" SourceId="1" SourceUrl="http://localhost:56814/Patrons.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

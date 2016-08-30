@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f365f6f3d0154821aeda9cc4b72767db" Name="Diagram1" ZoomLevel="80">
+        <EntityTypeShape EntityType="BookReSearchModel.Book" Width="2.5" PointX="8" PointY="21.875" />
+        <EntityTypeShape EntityType="BookReSearchModel.BookTitle" Width="1.5" PointX="8.5394139497258763" PointY="4.5582174381977962" />
+        <EntityTypeShape EntityType="BookReSearchModel.Category" Width="1.5" PointX="8.90032228869401" PointY="17.306078501653893" />
+        <EntityTypeShape EntityType="BookReSearchModel.SubCategory" Width="1.5" PointX="1.1084266366010658" PointY="4.7017512939412853" />
+        <AssociationConnector Association="BookReSearchModel.FK_Book_ToTable" />
+        <AssociationConnector Association="BookReSearchModel.FK_BookTitle_ToTable" />
+        <AssociationConnector Association="BookReSearchModel.FK_SubCategory_ToTable" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

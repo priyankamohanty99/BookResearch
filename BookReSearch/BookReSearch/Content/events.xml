@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<events>
+  <event>
+    <date>7/31/2016</date>
+    <title>Science meeting</title>
+    <location>95578 American Point</location>
+  </event>
+  <event>
+    <date>8/1/2016</date>
+    <title>Study tips</title>
+    <location>30 Anderson Place</location>
+  </event>
+  <event>
+    <date>8/2/2016</date>
+    <title>Book fair</title>
+    <location>1 Thierer Terrace</location>
+  </event>
+  <event>
+    <date>8/4/2016</date>
+    <title>Story time</title>
+    <location>22232 Sunfield Alley</location>
+  </event>
+  <event>
+    <date>8/9/2016</date>
+    <title>Reading program kick-off</title>
+    <location>906 Anniversary Drive</location>
+  </event>
+  <event>
+    <date>8/11/2016</date>
+    <title>Librarian meeting</title>
+    <location>44 Springview Park</location>
+  </event>
+  <event>
+    <date>8/25/2016</date>
+    <title>Read-along</title>
+    <location>3 Gina Road</location>
+  </event>
+  <event>
+    <date>9/13/2015</date>
+    <title>Writers workshop</title>
+    <location>696 Mallard Lane</location>
+  </event>
+  <event>
+    <date>9/30/2016</date>
+    <title>Research workshop</title>
+    <location>3983 Division Alley</location>
+  </event>
+  <event>
+    <date>10/29/2016</date>
+    <title>Donation drive</title>
+    <location>60956 Hintze Way</location>
+  </event>
+</events>

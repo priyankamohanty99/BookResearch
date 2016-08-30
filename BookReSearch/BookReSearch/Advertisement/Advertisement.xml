@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Advertisements>
+  <Ad>
+    <ImageUrl>~/Images/ad_pizza.jpg</ImageUrl>
+    <NavigateUrl>http://www.sbarro.com/</NavigateUrl>
+    <AlternateText>Sbarro pizza</AlternateText>
+    <Impressions>2</Impressions>
+    <Keyword>small</Keyword>
+  </Ad>
+  <Ad>
+    <ImageUrl>~/Images/ad_mobile_phone.jpg</ImageUrl>
+    <NavigateUrl>http://www.gsmarena.com/sony_ericsson_w205-2774.php</NavigateUrl>
+    <AlternateText>Sony Ericson W205</AlternateText>
+    <Impressions>2</Impressions>
+    <Keyword>small</Keyword>
+  </Ad>
+  <Ad>
+    <ImageUrl>~/images/ad_nike.jpg</ImageUrl>
+    <NavigateUrl>http://store.nike.com/us/en_us/pw/shoes</NavigateUrl>
+    <AlternateText>Nike shoes</AlternateText>
+    <Impressions>3</Impressions>
+    <Keyword>small</Keyword>
+  </Ad>
+</Advertisements>
